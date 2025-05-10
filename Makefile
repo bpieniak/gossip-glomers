@@ -14,3 +14,8 @@ MAELSTROM_BIN=./maelstrom/maelstrom
 	go build -o ./$@/build ./$@
 	${MAELSTROM_BIN} test -w broadcast --bin ./$@/build --node-count 1 --time-limit 20 --rate 10
 .PHONY: 3a-single-node-broadcast
+
+3b-multi-node-broadcast:
+	go build -o ./$@/build ./$@
+	${MAELSTROM_BIN} test -w broadcast --bin ./$@/build --node-count 5 --time-limit 20 --rate 10
+.PHONY: 3b-multi-node-broadcast
