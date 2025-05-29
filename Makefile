@@ -19,3 +19,8 @@ MAELSTROM_BIN=./maelstrom/maelstrom
 	go build -o ./$@/build ./$@
 	${MAELSTROM_BIN} test -w broadcast --bin ./$@/build --node-count 5 --time-limit 20 --rate 10
 .PHONY: 3b-multi-node-broadcast
+
+3c-fault-tolerant-broadcast:
+	go build -o ./$@/build ./$@
+	${MAELSTROM_BIN} test -w broadcast --bin ./$@/build --node-count 5 --time-limit 20 --rate 10 --nemesis partition
+.PHONY: 3c-fault-tolerant-broadcast
