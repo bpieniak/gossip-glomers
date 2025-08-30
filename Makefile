@@ -1,5 +1,10 @@
 MAELSTROM_BIN=./maelstrom/maelstrom
 
+maelstrom:
+	wget https://github.com/jepsen-io/maelstrom/releases/download/v0.2.4/maelstrom.tar.bz2
+	tar -xvjf ./maelstrom.tar.bz2
+	rm ./maelstrom.tar.bz2
+
 01-echo:
 	go build -o ./$@/build ./$@
 	${MAELSTROM_BIN} test -w echo --bin ./$@/build --node-count 1 --time-limit 10
