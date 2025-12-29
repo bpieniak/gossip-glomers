@@ -35,3 +35,8 @@ maelstrom:
 	${MAELSTROM_BIN} test -w g-counter --bin ./$@/build --node-count 3 --rate 100 --time-limit 20 --nemesis partition
 .PHONY: 4-grow-only-counter
 
+5a-single-node-kafka-style-log:
+	go build -o ./$@/build ./$@
+	${MAELSTROM_BIN} test -w kafka --bin ./$@/build --node-count 1 --concurrency 2n --time-limit 20 --rate 1000
+.PHONY: 5a-single-node-kafka-style-log
+

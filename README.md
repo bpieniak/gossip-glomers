@@ -39,3 +39,11 @@ Expansion of 3a. Messages are stored in a map for deduplication and messages are
 [Solution](4-grow-only-counter/main.go)
 
 In this implementation in `add` use CAS to atomically update counter in SeqKV, retry on failure. `read` is done by reading counter from SeqKV and performing a no-op CAS to ensure the value is stable - if CAS fails (due to a concurrent write), retry the entire read.
+
+### Challenge #5: Kafka-Style Log
+
+#### Challenge #5a: Single-Node Kafka-Style Log
+
+[Solution](5a-single-node-kafka-style-log/main.go)
+
+Implements a single-node, per-key append-only log with monotonic offsets. State lives in-memory per key, protected by a mutex. Each log tracks its message slice and latest committed offset to satisfy Maelstrom’s ordering and loss checks.
