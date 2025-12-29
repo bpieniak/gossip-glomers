@@ -47,3 +47,9 @@ In this implementation in `add` use CAS to atomically update counter in SeqKV, r
 [Solution](5a-single-node-kafka-style-log/main.go)
 
 Implements a single-node, per-key append-only log with monotonic offsets. State lives in-memory per key, protected by a mutex. Each log tracks its message slice and latest committed offset to satisfy Maelstrom’s ordering and loss checks.
+
+#### Challenge #5b: Multi-Node Kafka-Style Log
+
+[Solution](5b-multi-node-kafka-style-log/main.go)
+
+Distributes the log across nodes using Maelstrom’s linearizable KV: per key we CAS a `next` counter to allocate offsets, write messages under keyed offset entries, store commits separately, and serve polls by reading stored offsets.
