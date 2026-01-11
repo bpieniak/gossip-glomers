@@ -54,3 +54,8 @@ maelstrom:
 	go build -o ./$@/build ./$@
 	${MAELSTROM_BIN} test -w txn-rw-register --bin ./$@/build --node-count 2 --concurrency 2n --time-limit 20 --rate 1000 --consistency-models read-uncommitted --availability total --nemesis partition
 .PHONY: 6b-totally-available-read-uncommitted-transactions
+
+6c-totally-available-read-committed-transactions:
+	go build -o ./$@/build ./$@
+	${MAELSTROM_BIN} test -w txn-rw-register --bin ./$@/build --node-count 2 --concurrency 2n --time-limit 20 --rate 1000 --consistency-models read-committed --availability total --nemesis partition
+.PHONY: 6c-totally-available-read-committed-transactions

@@ -67,3 +67,9 @@ Handles `txn` requests on a single node with an in-memory key/value map guarded 
 [Solution](6b-totally-available-read-uncommitted-transactions/main.go)
 
 Replicates write operations to all nodes using best-effort async sends while serving reads from local state for a read-uncommitted model. Each txn applies reads/writes locally and replies immediately to preserve total availability.
+
+#### Challenge #6c: Totally-Available Read Committed Transactions
+
+[Solution](6c-totally-available-read-committed-transactions/main.go)
+
+Same as 6b solution as it also is passing read-committed consistency.
