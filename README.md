@@ -53,3 +53,11 @@ Implements a single-node, per-key append-only log with monotonic offsets. State 
 [Solution](5b-multi-node-kafka-style-log/main.go)
 
 Distributes the log across nodes using Maelstrom’s linearizable KV: per key we CAS a `next` counter to allocate offsets, write messages under keyed offset entries, store commits separately, and serve polls by reading stored offsets.
+
+### Totally-Available Transaction
+
+#### Challenge #6a: Single-Node, Totally-Available Transactions
+
+[Solution](6a-single-node-totally-available-transactions/main.go)
+
+Handles `txn` requests on a single node with an in-memory key/value map guarded by a mutex. The handler applies each read/write in order and echoes back the transaction with read results, which is sufficient for the single-node, totally-available case.

@@ -45,3 +45,7 @@ maelstrom:
 	${MAELSTROM_BIN} test -w kafka --bin ./$@/build --node-count 2 --concurrency 2n --time-limit 20 --rate 1000
 .PHONY: 5b-multi-node-kafka-style-log
 
+6a-single-node-totally-available-transactions:
+	go build -o ./$@/build ./$@
+	${MAELSTROM_BIN} test -w txn-rw-register --bin ./$@/build --node-count 1 --time-limit 20 --rate 1000 --concurrency 2n --consistency-models read-uncommitted --availability total
+.PHONY: 6a-single-node-totally-available-transactions
