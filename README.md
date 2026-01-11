@@ -61,3 +61,9 @@ Distributes the log across nodes using Maelstrom’s linearizable KV: per key we
 [Solution](6a-single-node-totally-available-transactions/main.go)
 
 Handles `txn` requests on a single node with an in-memory key/value map guarded by a mutex. The handler applies each read/write in order and echoes back the transaction with read results, which is sufficient for the single-node, totally-available case.
+
+#### Challenge #6b: Totally-Available Read Uncommitted Transactions
+
+[Solution](6b-totally-available-read-uncommitted-transactions/main.go)
+
+Replicates write operations to all nodes using best-effort async sends while serving reads from local state for a read-uncommitted model. Each txn applies reads/writes locally and replies immediately to preserve total availability.
